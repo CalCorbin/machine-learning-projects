@@ -15,7 +15,6 @@ lazy-object-proxy==1.6.0
 mccabe==0.6.1
 multi-key-dict==2.0.3
 numpy==1.22.4
-orm-cli==1.17.1
 packaging==21.3
 pbr==5.8.0
 pendulum==2.1.2
