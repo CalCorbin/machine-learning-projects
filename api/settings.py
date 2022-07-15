@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'calcorbin-ml-projects.herokuapp.com',
+    '127.0.0.1',
+    'localhost',
 ]
 
 # Application definition
