@@ -8,7 +8,9 @@
     - `source .venv/bin/activate`
 3. Install requirements.
     - `pip3 install -r requirements.txt`
-4. Start the server.
+4. Run migrations.
+    - `python3 manage.py migrate`
+5. Start the server.
     - `python3 manage.py runserver`
 
 ## Updating requirements
