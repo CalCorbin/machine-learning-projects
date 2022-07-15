@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-m45o5+mt+ktx0io%l0)u(t2hso)l%ro5+ms0!fq4p*$7u=8#pk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'calcorbin-ml-projects.herokuapp.com',
+]
 
 # Application definition
 
