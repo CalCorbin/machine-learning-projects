@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from dotenv import load_dotenv
 from fastai.vision.widgets import *
 from fastbook import *
@@ -25,4 +25,9 @@ def get_bear_images(request):
     results = search_images_bing(key, "grizzly bear")
     ims = results.attrgot("contentUrl")
     image_count = len(ims)
-    return HttpResponse(f"Images Indexed {image_count}")
+    response = {
+        "image_count": image_count,
+        "success": True,
+    }
+
+    return JsonResponse(response)
