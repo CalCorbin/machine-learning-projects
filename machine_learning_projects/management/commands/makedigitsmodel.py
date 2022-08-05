@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from joblib import dump, load
+from joblib import dump
 from sklearn import datasets, svm, metrics
 from sklearn.model_selection import train_test_split
 import pandas
