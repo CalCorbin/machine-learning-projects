@@ -17,3 +17,9 @@
 
 1. From project root, with venv activated, run code below.
     - `pip3 freeze > requirements.txt`
+
+## Training Digits Model
+
+1. Active venv.
+2. Run the following management command.
+    - `python3 manage.py makedigitsmodel`
