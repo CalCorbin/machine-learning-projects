@@ -26,3 +26,7 @@
 3. Run the following management command.
     - `python3 manage.py makedigitsmodel`
 4. Upload the model to the s3 bucket.
+
+## Linting
+
+1. In project root run `pylint api/ machine_learning_projects/`.
