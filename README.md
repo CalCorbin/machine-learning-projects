@@ -3,9 +3,9 @@
 ## Local Setup
 
 1. Generate a virtual environment.
-    - `python3 -m venv .venv`
+    - `python3 -m venv env`
 2. Activate the virtual environment from the root.
-    - `source .venv/bin/activate`
+    - `source env/bin/activate`
 3. Install requirements.
     - `pip3 install -r requirements.txt`
 4. Run migrations.
