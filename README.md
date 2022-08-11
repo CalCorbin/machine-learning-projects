@@ -23,3 +23,4 @@
 1. Active venv.
 2. Run the following management command.
     - `python3 manage.py makedigitsmodel`
+3. Model versioning in git is handled by Git Large File Storage: https://git-lfs.github.com/
