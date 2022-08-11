@@ -1,3 +1,4 @@
+"""Module for managing URLs."""
 from django.urls import path
 
 from . import views

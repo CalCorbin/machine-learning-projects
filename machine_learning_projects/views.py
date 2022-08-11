@@ -1,15 +1,16 @@
+"""Module for managing Views."""
+from io import BytesIO
+import os
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from joblib import load
 from PIL import Image
-from io import BytesIO
 from dotenv import load_dotenv
 import boto3
-import os
 import numpy as np
 
 load_dotenv()
-digits_model = ''
+DIGITS_MODEL = ''
 s3 = boto3.resource(
     's3',
     aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
@@ -19,14 +20,16 @@ s3 = boto3.resource(
 with BytesIO() as data:
     s3.Bucket(os.getenv('AWS_S3_BUCKET')).download_fileobj(os.getenv('DIGITS_MODEL'), data)
     data.seek(0)
-    digits_model = load(data)
+    DIGITS_MODEL = load(data)
 
 
-def index(request):
+def index():
+    """Index endpoint."""
     return HttpResponse("This is Cal's machine learning service.")
 
 
-def health(request):
+def health():
+    """Health endpoint."""
     return HttpResponse("OK")
 
 
@@ -56,7 +59,7 @@ def predict_digit(request):
     image = image.reshape(1, -1)
 
     # Predict the digit in the image.
-    predicted = digits_model.predict(image)
+    predicted = DIGITS_MODEL.predict(image)
 
     # return HttpResponse("OK")
     return JsonResponse({'predicted': predicted.tolist()})
