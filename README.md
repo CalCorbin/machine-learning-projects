@@ -21,6 +21,8 @@
 ## Training Digits Model
 
 1. Activate venv.
-2. Run the following management command.
+2. Install tensorflow.
+    - `pip3 install tensorflow`
+3. Run the following management command.
     - `python3 manage.py makedigitsmodel`
-3. Model versioning in git is handled by Git Large File Storage: https://git-lfs.github.com/
+4. Upload the model to the s3 bucket.
