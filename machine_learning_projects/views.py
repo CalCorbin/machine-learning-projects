@@ -1,13 +1,9 @@
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from sklearn import datasets, svm, metrics
-from sklearn.model_selection import train_test_split
-import pandas as pd
-import json
-
 from joblib import load
+from PIL import Image
+import numpy as np
 
-trained_model_path = 'machine_learning_projects/trained_models/digits_model.joblib'
 digits_model = load('./machine_learning_projects/trained_models/digits_model.joblib')
 
 
@@ -35,8 +31,17 @@ def predict_digit(request):
             status=400
         )
 
-    # data = json.loads(request.body)
-    # print(data)
-    # digits_model.score(X_test, y_test)
+    # Load the image submitted by the user and convert to gray scale.
+    image = request.FILES['imageFile']
+    image = Image.open(image).convert('L')
 
-    return HttpResponse("OK")
+    # Resize the image.
+    image = image.resize((28, 28), Image.ANTIALIAS)
+    image = np.array(image).flatten()
+    image = image.reshape(1, -1)
+
+    # Predict the digit in the image.
+    predicted = digits_model.predict(image)
+
+    # return HttpResponse("OK")
+    return JsonResponse({'predicted': predicted.tolist()})
