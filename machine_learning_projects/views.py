@@ -2,9 +2,24 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from joblib import load
 from PIL import Image
+from io import BytesIO
+from dotenv import load_dotenv
+import boto3
+import os
 import numpy as np
 
-digits_model = load('./machine_learning_projects/trained_models/digits_model.joblib')
+load_dotenv()
+digits_model = ''
+s3 = boto3.resource(
+    's3',
+    aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+    aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+)
+
+with BytesIO() as data:
+    s3.Bucket(os.getenv('AWS_S3_BUCKET')).download_fileobj(os.getenv('DIGITS_MODEL'), data)
+    data.seek(0)
+    digits_model = load(data)
 
 
 def index(request):
