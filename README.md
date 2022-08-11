@@ -17,3 +17,10 @@
 
 1. From project root, with venv activated, run code below.
     - `pip3 freeze > requirements.txt`
+
+## Training Digits Model
+
+1. Activate venv.
+2. Run the following management command.
+    - `python3 manage.py makedigitsmodel`
+3. Model versioning in git is handled by Git Large File Storage: https://git-lfs.github.com/

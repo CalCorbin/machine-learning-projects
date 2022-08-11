@@ -1,28 +1,47 @@
-from django.http import HttpResponse
-from dotenv import load_dotenv
-from fastai.vision.widgets import *
-from fastbook import *
+from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from joblib import load
+from PIL import Image
+import numpy as np
 
-load_dotenv()
+digits_model = load('./machine_learning_projects/trained_models/digits_model.joblib')
 
 
 def index(request):
-    return HttpResponse("This is Cal's machine learning API. It will host a bear classification app.")
+    return HttpResponse("This is Cal's machine learning service.")
 
 
 def health(request):
     return HttpResponse("OK")
 
 
-def which_bear(request):
-    return HttpResponse("BEARS")
+@csrf_exempt
+def predict_digit(request):
+    """This endpoint is used to predict the digit in an image."""
 
+    if request.method != 'POST':
+        return JsonResponse(
+            {'error': 'This endpoint only accepts POST requests.'},
+            status=400
+        )
 
-def get_bear_images(request):
-    key = os.getenv("AZURE_SEARCH_KEY")
+    if 'imageFile' not in request.FILES:
+        return JsonResponse(
+            {'error': 'Did you forget to provide a png image of a digit?'},
+            status=400
+        )
 
-    # Create a new Azure Search client
-    results = search_images_bing(key, "grizzly bear")
-    ims = results.attrgot("contentUrl")
-    image_count = len(ims)
-    return HttpResponse(f"Images Indexed {image_count}")
+    # Load the image submitted by the user and convert to gray scale.
+    image = request.FILES['imageFile']
+    image = Image.open(image).convert('L')
+
+    # Resize the image.
+    image = image.resize((28, 28), Image.ANTIALIAS)
+    image = np.array(image).flatten()
+    image = image.reshape(1, -1)
+
+    # Predict the digit in the image.
+    predicted = digits_model.predict(image)
+
+    # return HttpResponse("OK")
+    return JsonResponse({'predicted': predicted.tolist()})
