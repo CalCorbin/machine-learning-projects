@@ -5,7 +5,7 @@ from joblib import dump
 from sklearn import metrics
 from sklearn import ensemble
 
-# Tensorflow is really big, so only install it if you need it.
+# Tensorflow is really big, so only install it if you need to generate a new model.
 # pylint: disable=import-error
 import tensorflow as tf
 
