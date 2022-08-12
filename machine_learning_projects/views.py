@@ -10,17 +10,21 @@ import boto3
 import numpy as np
 
 load_dotenv()
+
+# Load the model
 DIGITS_MODEL = ''
 s3 = boto3.resource(
     's3',
     aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
     aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
 )
-
-with BytesIO() as data:
-    s3.Bucket(os.getenv('AWS_S3_BUCKET')).download_fileobj(os.getenv('DIGITS_MODEL'), data)
-    data.seek(0)
-    DIGITS_MODEL = load(data)
+if os.getenv('CURRENT_ENV') == 'local':
+    DIGITS_MODEL = load(os.getenv('DIGITS_MODEL'))
+else:
+    with BytesIO() as data:
+        s3.Bucket(os.getenv('AWS_S3_BUCKET')).download_fileobj(os.getenv('DIGITS_MODEL'), data)
+        data.seek(0)
+        DIGITS_MODEL = load(data)
 
 
 def index():
@@ -54,7 +58,7 @@ def predict_digit(request):
     image = Image.open(image).convert('L')
 
     # Resize the image.
-    image = image.resize((28, 28), Image.ANTIALIAS)
+    image = image.resize((28, 28))
     image = np.array(image).flatten()
     image = image.reshape(1, -1)
 
