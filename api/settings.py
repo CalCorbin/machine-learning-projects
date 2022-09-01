@@ -58,6 +58,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "https://calcorbin.com",
     "http://localhost:3000",
+    "https://cal-portfolio-dev.web.app",
 ]
 
 CORS_ALLOW_HEADERS = [
