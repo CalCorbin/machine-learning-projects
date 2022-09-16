@@ -7,7 +7,7 @@ from sklearn import metrics
 from sklearn import ensemble
 from sklearn.model_selection import RandomizedSearchCV
 
-# Tensorflow is really big, so only install it if you need to generate a new model.
+# Tensorflow is grotesque, so only install it if you need to generate a new model.
 # pylint: disable=import-error
 import tensorflow as tf
 
