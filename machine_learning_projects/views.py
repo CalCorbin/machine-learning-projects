@@ -64,6 +64,4 @@ def predict_digit(request):
 
     # Predict the digit in the image.
     predicted = DIGITS_MODEL.predict(image)
-
-    # return HttpResponse("OK")
     return JsonResponse({'predicted': predicted.tolist()})

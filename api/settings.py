@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'calcorbin-ml-projects.herokuapp.com',
+    'calcorbin-ml-projects.fly.dev',
     '127.0.0.1',
     'localhost',
 ]
