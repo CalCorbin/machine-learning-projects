@@ -38,15 +38,8 @@ def health(_self):
 
 
 @csrf_exempt
-def predict_digit(request):
+def predict_digit(request: object) -> object:
     """This endpoint is used to predict the digit in an image."""
-
-    if request.method != 'POST':
-        return JsonResponse(
-            {'error': 'This endpoint only accepts POST requests.'},
-            status=400
-        )
-
     if 'imageFile' not in request.FILES:
         return JsonResponse(
             {'error': 'Did you forget to provide a png image of a digit?'},
