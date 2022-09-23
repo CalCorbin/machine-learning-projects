@@ -27,14 +27,14 @@ else:
         DIGITS_MODEL = load(data)
 
 
-def index():
+def index(_self):
     """Index endpoint."""
-    return HttpResponse("This is Cal's machine learning service.")
+    return HttpResponse("Hello, stranger. You're at the machine_learning_projects index.")
 
 
-def health():
+def health(_self):
     """Health endpoint."""
-    return HttpResponse("OK")
+    return HttpResponse("ML Projects is healthy.")
 
 
 @csrf_exempt
