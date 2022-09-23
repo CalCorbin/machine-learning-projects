@@ -1,4 +1,4 @@
-name: Production Fly Deploy for ${{ github.repository }}
+name: Production Fly Deploy for machine_learning_projects
 
 on:
   push:
