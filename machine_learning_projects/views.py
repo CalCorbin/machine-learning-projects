@@ -27,14 +27,14 @@ else:
         DIGITS_MODEL = load(data)
 
 
-def index():
+def index(_self):
     """Index endpoint."""
-    return HttpResponse("This is Cal's machine learning service.")
+    return HttpResponse("Hello, stranger. You're at the machine_learning_projects index.")
 
 
-def health():
+def health(_self):
     """Health endpoint."""
-    return HttpResponse("OK")
+    return HttpResponse("ML Projects is healthy.")
 
 
 @csrf_exempt
@@ -64,6 +64,4 @@ def predict_digit(request):
 
     # Predict the digit in the image.
     predicted = DIGITS_MODEL.predict(image)
-
-    # return HttpResponse("OK")
     return JsonResponse({'predicted': predicted.tolist()})
