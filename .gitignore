@@ -134,3 +134,7 @@ dmypy.json
 # Misc project files
 bears/
 *.joblib
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
