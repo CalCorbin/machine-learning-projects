@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-m45o5+mt+ktx0io%l0)u(t2hso)l%ro5+ms0!fq4p*$7u=8#pk
 PORT = 8000
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'django-env.eba-hkmtp5gp.us-west-2.elasticbeanstalk.com',
