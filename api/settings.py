@@ -29,6 +29,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'django-env.eba-hkmtp5gp.us-west-2.elasticbeanstalk.com',
+    'calcoapi.com',
     '127.0.0.1',
     'localhost',
 ]
